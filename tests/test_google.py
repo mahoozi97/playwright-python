@@ -1,11 +1,13 @@
 import re  # re is for regex
 from playwright.sync_api import Page, expect
 
+
 def test_google_search(page: Page):
     page.wait_for_timeout(3000)
 
     # /ncr -> without regional popup
     page.goto("https://www.google.com/ncr")
+
     # Handle the "Accept All" popup (optional)
     try:
         page.get_by_role("button", name="Accept all").click(timeout=3000)
